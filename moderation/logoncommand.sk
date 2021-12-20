@@ -2,6 +2,7 @@ options:
 	line: §3------------- §9DD §7| §bLogOn §3-------------
 
 command /logon [<string>] [<string>]:
+	permission: dd.logon
 	trigger:
 		if arg-1 is not set:
 			send "{@line}"

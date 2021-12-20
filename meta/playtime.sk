@@ -1,6 +1,3 @@
-on load:
-	wait 1 tick
-	set {dd.addons::playtime} to true
 variables:
 	{dd.pt::%player%::dd} = 0
 	{dd.pt::%player%::hh} = 0
@@ -32,4 +29,3 @@ command /playtime [<player>]:
 			send "§3%arg-1%s Spielzeit beträgt:"
 			send "%{dd.pt::%arg-1%::formated}%"
 			exit
-			

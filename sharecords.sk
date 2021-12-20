@@ -7,11 +7,11 @@ command cords [<string>] [<string>]:
 			send ""
 			send "§d/cords <Argument>"
 			send ""
-			send "§5» §dsave <Position>"
-			send "§5» §ddelete <Position>"
-			send "§5» §dlist"
-			send "§5» §dshare <Position>"
-			send "§5» §dsharehere"
+			send "§5» §dsave <Position> - speichert eine Position"
+			send "§5» §ddelete <Position> - löscht eine gespeicherte Position"
+			send "§5» §dlist - listet deine gespiecherten Positionen auf"
+			send "§5» §dshare <Position> - teilt eine gespeicherte Position"
+			send "§5» §dsharehere - teilt deine derzeitige Position"
 			send ""
 			send "{@line}"
 		if arg-1 is "save":
@@ -41,12 +41,12 @@ command cords [<string>] [<string>]:
 					send "§5Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}%"
 					send ""
 					send "{@line}"
-					
+
 				else:
 					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
 			else:
 				send "§cGibt einen Postionsnamen an: §d/cords view <Position>"
-			
+
 		if arg-1 is "delete":
 			if arg-2 is set:
 				if {dd::sc::%player's uuid%::%arg-2%} is set:
@@ -92,4 +92,3 @@ command cords [<string>] [<string>]:
 			send "§5Welt: §d%player's world%" to all players
 			send "" to all players
 			send "{@line}" to all players
-			

@@ -1,8 +1,5 @@
-on load:
-	wait 20 ticks
-	set {dd.addons::commandspy} to true
 variables:
-	{dd.cspy.data::%player%::enabled} = false 
+	{dd.cspy.data::%player%::enabled} = false
 	{dd.cspy.data::%player%::passive} = false
 options:
 	prefix: §7[§bDD §8| §9CSPY§7] §8» §3
@@ -10,19 +7,17 @@ options:
 
 on command:
 	loop all players:
-		if loop-player has permission "dd.mod.cspy":
-			if {dd.cspy.data::%loop-player%::enabled} is true:
-				if {dd.cspy.data::%loop-player%::passive} is true:
-					send "§8[§7DD §8| §7CSPY§8] §8(§7%player%§8) §8» §7%full command%" to loop-player
-				else:
-					send "§7[§bDD §8| §9CSPY§7] §7(§6%player%§7) §8» §e%full command%" to loop-player
+		loop-player has permission "dd.mod.cspy":
+		if {dd.cspy.data::%loop-player%::enabled} is true:
+			if {dd.cspy.data::%loop-player%::passive} is true:
+				send "§8[§7DD §8| §7CSPY§8] §8(§7%player%§8) §8» §7%full command%" to loop-player
 			else:
-				exit
+				send "§7[§bDD §8| §9CSPY§7] §7(§6%player%§7) §8» §e%full command%" to loop-player
 		else:
 			exit
-			
+
 command /cspy [<string>]:
-	permission: dd.cspy
+	permission: dd.mod.cspy
 	usage: §a/cspy
 	trigger:
 		if arg-1 is not set:

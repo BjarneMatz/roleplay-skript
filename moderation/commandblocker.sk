@@ -2,16 +2,18 @@ on command:
 	loop {dd.commandblocker::*}:
 		command is loop-value
 		cancel event
-		
+
 command /commandblocker [<string>] [<string>]:
 	permission: dd.commandblocker
 	trigger:
 		if arg-1 is "add":
 			add arg-2 to {dd.commandblocker::*}
+			send "§d%arg-2% §5wurde zur Commandblocker Liste hinzugefügt."
 		if arg-1 is "list":
 			loop {dd.commandblocker::*}:
-				send "%loop-index% - %loop-value%"
+				send "§d%loop-index% §7- §5%loop-value%"
 		if arg-1 is "remove":
 			loop {dd.commandblocker::*}:
 				loop-index is arg-2
+				send "§d%arg-2% §5wurde von der Commandblocker Liste entfernt."
 				remove loop-value from {dd.commandblocker::*}
