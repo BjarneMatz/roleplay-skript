@@ -1,0 +1,35 @@
+on load:
+	wait 1 tick
+	set {dd.addons::playtime} to true
+variables:
+	{dd.pt::%player%::dd} = 0
+	{dd.pt::%player%::hh} = 0
+	{dd.pt::%player%::mm} = 0
+	{dd.pt::%player%::ss} = 0
+	{dd.points::%player%} = 0
+every second:
+	loop all players:
+		add 1 to {dd.pt::%loop-player%::ss}
+		if {dd.pt::%loop-player%::ss} is 60:
+			subtract 60 from {dd.pt::%loop-player%::ss}
+			add 1 to {dd.pt::%loop-player%::mm}
+		if {dd.pt::%loop-player%::mm} is 60:
+			subtract 60 from {dd.pt::%loop-player%::mm}
+			add 1 to {dd.pt::%loop-player%::hh}
+		if {dd.pt::%loop-player%::hh} is 24:
+			subtract 24 from {dd.pt::%loop-player%::hh}
+			add 1 to {dd.pt::%loop-player%::dd}
+		set {dd.pt::%loop-player%::formated} to "§e%{dd.pt::%loop-player%::dd}% §9Tage §e%{dd.pt::%loop-player%::hh}% §9Stunden §e%{dd.pt::%loop-player%::mm}% §9Minuten §e%{dd.pt::%loop-player%::ss}% §9Sekunden"
+
+
+command /playtime [<player>]:
+	trigger:
+		if arg-1 is not set:
+			send "§3Deine Spielzeit beträgt:"
+			send "%{dd.pt::%player%::formated}%"
+			exit
+		else:
+			send "§3%arg-1%s Spielzeit beträgt:"
+			send "%{dd.pt::%arg-1%::formated}%"
+			exit
+			

@@ -1,0 +1,58 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::commandspy} to true
+variables:
+	{dd.cspy.data::%player%::enabled} = false 
+	{dd.cspy.data::%player%::passive} = false
+options:
+	prefix: §7[§bDD §8| §9CSPY§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9CSPY§7] §3-------------
+
+on command:
+	loop all players:
+		if loop-player has permission "dd.mod.cspy":
+			if {dd.cspy.data::%loop-player%::enabled} is true:
+				if {dd.cspy.data::%loop-player%::passive} is true:
+					send "§8[§7DD §8| §7CSPY§8] §8(§7%player%§8) §8» §7%full command%" to loop-player
+				else:
+					send "§7[§bDD §8| §9CSPY§7] §7(§6%player%§7) §8» §e%full command%" to loop-player
+			else:
+				exit
+		else:
+			exit
+			
+command /cspy [<string>]:
+	permission: dd.cspy
+	usage: §a/cspy
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send ""
+			send "§a/cspy §7<§eArgument§7>"
+			send ""
+			send "§b➥ §etoggle §7- §3Schaltet CSPY An bzw. Aus"
+			send "§b➥ §emode §7- §3Schaltet ziwschen dem besser sichtbarem aktiven und dem weniger sichbarem passiven Modus um"
+			send ""
+			send "{@line}"
+			exit
+		else:
+			if arg-1 is "toggle":
+				if {dd.cspy.data::%player%::enabled} is true:
+					set {dd.cspy.data::%player%::enabled} to false
+					send "{@prefix} CommandSpy ausgeschaltet."
+					exit
+				if {dd.cspy.data::%player%::enabled} is false:
+					set {dd.cspy.data::%player%::enabled} to true
+					send "{@prefix} CommandSpy eingeschaltet."
+					exit
+			if arg-1 is "mode":
+				if {dd.cspy.data::%player%::passive} is true:
+					set {dd.cspy.data::%player%::passive} to false
+					send "{@prefix} Passiver Modus ausgeschaltet."
+					exit
+				if {dd.cspy.data::%player%::passive} is false:
+					set {dd.cspy.data::%player%::passive} to true
+					send "{@prefix} Passiver Modus eingeschaltet."
+					exit
+			else:
+				send "{@prefix} Unbekanntes Argument"

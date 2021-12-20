@@ -1,0 +1,40 @@
+variables:
+	{dd.server.timer::sec} = 0
+	{dd.server.timer::min} = 0
+	{dd.server.timer::hour} = 0
+
+command /serverinfo [<string>]:
+	trigger:
+		send ""
+		send "§3Version: §b1.17.1"
+		send "§3Betriebssystem: §bPaperSpigot"
+		send "§3Backbone: §bLinux Debian 10"
+		send ""
+		send "§3Laufzeit: §b%{dd.server.uptime}%"
+		send ""
+		send "§cNächster Neustart in §eT-%{dd.server.restart}%"
+		send ""
+		
+every second:
+	add 1 to {dd.server.timer::sec}
+	if {dd.server.timer::sec} >= 60:
+		add 1 to {dd.server.timer::min}
+		set {dd.server.timer::sec} to 0
+	if {dd.server.timer::min} >= 60:
+		add 1 to {dd.server.timer::hour}
+		set {dd.server.timer::min} to 0
+	if {dd.server.timer::hour} >= 12:
+		make console execute "admin restart confirm"
+	if {dd.server.reset} is true:
+		clear {dd.server.uptime}
+		clear {dd.server.restart}
+		set {dd.server.timer::sec} to 0
+		set {dd.server.timer::min} to 0
+		set {dd.server.timer::hour} to 0
+		clear {dd.server.reset}
+	
+	set {dd.server.uptime} to "§e%{dd.server.timer::hour}% §3Stunden §e%{dd.server.timer::min}% §3Minuten §e%{dd.server.timer::sec}% §3Sekunden"
+	set {_h} to {dd.server.timer::hour}*(-1)+11
+	set {_m} to {dd.server.timer::min}*(-1)+59
+	set {_s} to {dd.server.timer::sec}*(-1)+59
+	set {dd.server.restart} to "§e%{_h}% §3Stunden §e%{_m}% §3Minuten§e %{_s}% §3Sekunden"

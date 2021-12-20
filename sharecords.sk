@@ -1,0 +1,95 @@
+options:
+	line: §9--- §3Position §9---
+command cords [<string>] [<string>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send ""
+			send "§d/cords <Argument>"
+			send ""
+			send "§5» §dsave <Position>"
+			send "§5» §ddelete <Position>"
+			send "§5» §dlist"
+			send "§5» §dshare <Position>"
+			send "§5» §dsharehere"
+			send ""
+			send "{@line}"
+		if arg-1 is "save":
+			if arg-2 is not set:
+				send "§cGibt einen Postionsnamen an: §d/cords save <Position>"
+			else:
+				if {dd::sc::%player's uuid%::%arg-2%} is not set:
+					set {dd::sc::%player's uuid%::%arg-2%} to player's location
+					set {dd::sc::%player's uuid%::%arg-2%::x} to player's x coordinate
+					set {dd::sc::%player's uuid%::%arg-2%::y} to player's y coordinate
+					set {dd::sc::%player's uuid%::%arg-2%::z} to player's z coordinate
+					set {dd::sc::%player's uuid%::%arg-2%::world} to player's world
+					send "§d%arg-2% §5wurde auf §3X: §d%{dd::sc::%player's uuid%::%arg-2%::x}% §3Y: §d%{dd::sc::%player's uuid%::%arg-2%::y}% §3Z: §d%{dd::sc::%player's uuid%::%arg-2%::z}% §5und die Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}% §5gespeichert."
+				else:
+					send "§cEine Position mit dem Namen §d%arg-2% §cexistiert bereits."
+		if arg-1 is "view":
+			if arg-2 is set:
+				if {dd::sc::%player's uuid%::%arg-2%} is set:
+					send "{@line}"
+					send ""
+					send "§5Name: §d%arg-2%"
+					send ""
+					send "§5X: §d%{dd::sc::%player's uuid%::%arg-2%::x}%"
+					send "§5Y: §d%{dd::sc::%player's uuid%::%arg-2%::y}%"
+					send "§5Z: §d%{dd::sc::%player's uuid%::%arg-2%::z}%"
+					send ""
+					send "§5Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}%"
+					send ""
+					send "{@line}"
+					
+				else:
+					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+			else:
+				send "§cGibt einen Postionsnamen an: §d/cords view <Position>"
+			
+		if arg-1 is "delete":
+			if arg-2 is set:
+				if {dd::sc::%player's uuid%::%arg-2%} is set:
+					send "§5Position §d%arg-2% §7(X:%{dd::sc::%player's uuid%::%arg-2%::x}% Y:%{dd::sc::%player's uuid%::%arg-2%::y}% Z:%{dd::sc::%player's uuid%::%arg-2%::z}% in %{dd::sc::%player's uuid%::%arg-2%::world}%) §5wurde gelöscht."
+					clear {dd::sc::%player's uuid%::%arg-2%}
+					clear {dd::sc::%player's uuid%::%arg-2%::x}
+					clear {dd::sc::%player's uuid%::%arg-2%::y}
+					clear {dd::sc::%player's uuid%::%arg-2%::z}
+					clear {dd::sc::%player's uuid%::%arg-2%::world}
+				else:
+					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+			else:
+				send "§cGibt einen Postionsnamen an: §d/cords delete <Position>"
+		if arg-1 is "list":
+			send "§3Deine gespeicherten Positionen:"
+			loop {dd::sc::%player's uuid%::*}:
+				send "§6%loop-index% §7» §5X: §d%{dd::sc::%player's uuid%::%loop-index%::x}% §5Y: §d%{dd::sc::%player's uuid%::%loop-index%::y}% §5Z: §d%{dd::sc::%player's uuid%::%loop-index%::z}% §5Welt: §d%{dd::sc::%player's uuid%::%loop-index%::world}%" to player
+		if arg-1 is "share":
+			if arg-2 is set:
+				if {dd::sc::%player's uuid%::%arg-2%} is set:
+					send "{@line}" to all players
+					send "" to all players
+					send "§6%player% §5teilt die Position §d%arg-2%" to all players
+					send "" to all players
+					send "§5X: §d%{dd::sc::%player's uuid%::%arg-2%::x}%" to all players
+					send "§5Y: §d%{dd::sc::%player's uuid%::%arg-2%::y}%" to all players
+					send "§5Z: §d%{dd::sc::%player's uuid%::%arg-2%::z}%" to all players
+					send "" to all players
+					send "§5Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}%" to all players
+					send "" to all players
+					send "{@line}" to all players
+				else:
+					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+		if arg-1 is "sharehere":
+			send "{@line}" to all players
+			send "" to all players
+			send "§6%player% §5teilt seine derzeitige Position" to all players
+			send "" to all players
+			send "§5X: §d%player's x coordinate%" to all players
+			send "§5Y: §d%player's y coordinate%" to all players
+			send "§5Z: §d%player's z coordinate%" to all players
+			send "" to all players
+			send "§5Welt: §d%player's world%" to all players
+			send "" to all players
+			send "{@line}" to all players
+			

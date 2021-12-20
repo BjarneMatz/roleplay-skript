@@ -1,0 +1,104 @@
+options:
+	line: §3----------------- §9DD §8| §bManager §3-----------------
+command /manager:
+	permission: dd.core.manager
+	trigger:
+		send "{@line}"
+		send ""
+		send "§9Core Components:"
+		if {dd.addons::configurator} is true:
+			send "§b➥§3 Configurator §8» §aOnline"
+		else:
+			send "§b➥§3 Configurator §8» §cOffline"
+		if {dd.addons::manager} is true:
+			send "§b➥§3 Manager §8» §aOnline"
+		else:
+			send "§b➥§3 Manager §8» §cOffline"
+		if {dd.addons::mainframe} is true:
+			send "§b➥§3 Mainframe §8» §aOnline"
+		else:
+			send "§c§l--------------------------"
+			send "§b➥§3 Mainframe §8» §4Offline"
+			send "§c§l--------------------------"
+		
+		send ""
+		
+		send "§9Addons:"
+		if {dd.addons::bug} is true:
+			send "§b➥§3 Bug §8» §aOnline"
+		else:
+			send "§b➥§3 Bug §8» §cOffline"
+		if {dd.addons::commandspy} is true:
+			send "§b➥§3 CommandSpy §8» §aOnline"
+		else:
+			send "§b➥§3 CommandSpy §8» §cOffline"
+		if {dd.addons::gamemode} is true:
+			send "§b➥§3 Gamemode §8» §aOnline"
+		else:
+			send "§b➥§3 Gamemode §8» §cOffline"
+		if {dd.addons::lobby} is true:
+			send "§b➥§3 Lobby §8» §aOnline"
+		else:
+			send "§b➥§3 Lobby §8» §cOffline"
+		if {dd.addons::maintance} is true:
+			send "§b➥§3 Maintance §8» §aOnline"
+		else:
+			send "§b➥§3 Maintance §8» §cOffline"
+		if {dd.addons::motd} is true:
+			send "§b➥§3 MOTD §8» §aOnline"
+		else:
+			send "§b➥§3 MOTD §8» §cOffline"
+		if {dd.addons::playtime} is true:
+			send "§b➥§3 Playtime §8» §aOnline"
+		else:
+			send "§b➥§3 Playtime §8» §cOffline"
+		if {dd.addons::pushplates} is true:
+			send "§b➥§3 Pushplates §8» §aOnline"
+		else:
+			send "§b➥§3 Pushplates §8» §cOffline"
+		if {dd.addons::spawn} is true:
+			send "§b➥§3 Spawn §8» §aOnline"
+		else:
+			send "§b➥§3 Spawn §8» §cOffline"
+		if {dd.addons::staffchat} is true:
+			send "§b➥§3 StaffChat §8» §aOnline"
+		else:
+			send "§b➥§3 StaffChat §8» §cOffline"
+		if {dd.addons::teammenu} is true:
+			send "§b➥§3 TeamMenu §8» §aOnline"
+		else:
+			send "§b➥§3 TeamMenu §8» §cOffline"
+		if {dd.addons::warps} is true:
+			send "§b➥§3 Warps §8» §aOnline"
+		else:
+			send "§b➥§3 Warps §8» §cOffline"
+		send ""
+		send ""
+		send "{@line}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+on inventory click:
+	if name of player's current inventory is "§9§lDD SYSTEMS §7| §c§lMANAGER":
+		cancel event
+
+
+
+
+
+on load:
+	wait 20 ticks
+	set {dd.addons::manager} to true
+	

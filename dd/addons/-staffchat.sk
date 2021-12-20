@@ -1,0 +1,12 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::staffchat} to true
+command /sc <string>:
+	permission: dd.staffchat
+	trigger:
+		loop all players:
+			if loop-player has permission "dd.staffchat":
+				send "§7[§9DD §8| §bStaffchat§7] §7(§6%player%§7) §8» §3%arg-1%" to loop-player
+		exit
+			
+			

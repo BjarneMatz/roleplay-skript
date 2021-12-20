@@ -1,0 +1,48 @@
+#config:
+options:
+	prefix: §8[§9DD §7| §bEco§8] §7>> §3
+#core
+variables:
+	#Startgeld
+	{dd.money.start} = 1000
+
+on join:
+	if {dd.money.bal::%player%} is not set:
+		set {dd.money.bal::%player%} to {dd.money.start}
+
+
+#eco
+
+command /eco [<string>] [<offlineplayer>] [<integer>]:
+	permission: dd.economy
+	permission message: Test
+	trigger:
+		if arg-1 is "set":
+			if arg-2 is set:
+				
+			else:
+				send "{@prefix} Spieler Namen angeben!"
+		else if arg-1 is "get":
+			if arg-2 is set:
+				send "%arg-2%"
+				send "Kontostand von %arg-2%: %player's money%"
+			else:
+				send "{@prefix} Spieler Namen angeben!"
+		else if arg-1 is "reset":
+			if arg-2 is set:
+				clear {dd.money.bal::%arg-2%}
+
+#player
+
+command /money [<offlineplayer>]:
+	trigger:
+		send "Dein Kontostand beträgt: %{dd.money.bal::%arg-1%}%"
+		
+command /test <string> <offlineplayer>:
+	trigger:
+		if arg-1 is "get":
+			send "%{dd.test::%arg-2%}%"
+		if arg-1 is "set":
+			set {dd.test::%arg-2%} to "%player%"
+	
+	

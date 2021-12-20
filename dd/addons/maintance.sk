@@ -1,0 +1,37 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::maintance} to true
+options:
+	line: ------------Maintance------------
+
+command /maintance [<string>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send "§a/maintance §7<§eArgument§7>"
+			send ""
+			send "§b➥ §eenable §9- §3Aktiviert den Wartungsmodus"
+			send "§b➥ §edisable §9- §3Deaktiviert den Wartungsmodus"
+			send "§b➥ §ewarn §9- §3Warnt die Spieler vor dem Wartungsmodus"
+			send ""
+			send "{@line}"
+			exit
+		else:
+			if arg-1 is "enable":
+				set {dd.maintance.active} to true
+				exit
+			if arg-1 is "disable":
+				clear {dd.maintance.active}
+				exit
+			if arg-1 is "warn":
+				exit
+			else:
+				send "Falsches Argument."
+				exit
+			
+			
+on connect:
+	if {dd.maintance.active} is set:
+		if player do not have permission "dd.maintance.bypass":
+			kick the player due to "§c✖✖✖ §eWARTUNGSARBEITEN §c✖✖✖ %newline%%newline% §3Unser Server befindet sich derzeit im Wartungsmodus. %newline%Schaue später nochmal vorbei. %newline%%newline% §3Mehr Infos bekommst du auf unserem Discord: §bhttps://dsc.gg/united-mc.eu %newline%%newline%§c✖✖✖ §eWARTUNGSARBEITEN §c✖✖✖"
+		

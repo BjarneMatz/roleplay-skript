@@ -1,0 +1,16 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::pushplates} to true
+command /pushplate [<string>]:
+	trigger:	
+		if arg-1 is not set:
+			send ""
+			send ""
+			exit
+		else:
+			if arg-1 is "add":
+				set {dd.pushplate::%location%} to player's location
+
+on step on BEDROCK:
+	push player upwards at speed 1
+	push player infront at speed 10

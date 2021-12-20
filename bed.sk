@@ -1,0 +1,5 @@
+on bed enter:
+	send "§6%event-player% §5hat sich ins Bett gelegt." to all players
+on bed leave:
+	send "§6%event-player% §5hat sein Bett verlassen." to all players
+	

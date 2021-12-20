@@ -1,0 +1,67 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::lobby} to true
+options:
+	noperm: Keine Permission.
+	line: ----------Lobby----------
+command /setlobby [<string>]:
+	permission: dd.setspawn
+	permission message: {@noperm}
+	usage: {@noperm}
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send "§a/setlobby §7<§eArgument§7>"
+			send ""
+			send "§b➥ §9enable §b- §3Aktiviert das Lobby System"
+			send "§b➥ §9disable §b- §3Deaktiviert das Lobby System"
+			send ""
+			send "{@line}"
+			exit
+		else:
+			if arg-1 is "enable":
+				set {dd.lobby.lock} to true
+				send "" to all players
+				send "§b➥ §cACHTUNG §3Lobby System eingeschaltet." to all players
+				send "" to all players
+				exit
+			if arg-1 is "disable":
+				clear {dd.lobby.lock}
+				send "" to all players
+				send "§b➥ §cACHTUNG §3Lobby System ausgeschaltet." to all players
+				send "" to all players
+				exit
+			else:
+				send "§b➥ §3Dieses Argument existiert nicht."
+				exit
+				
+on join:
+	if player has permission "dd.setspawn":
+		wait 1 tick
+		if {dd.lobby.lock} is set:
+			send "§7§oLobby System aktiv"
+		else:
+			send "§cLobby System INAKTIV"
+	if {dd.lobby.lock} is set:
+		wait 1 tick
+		teleport player to {dd.spawn.pos}
+		exit
+	
+		
+on drop:
+	if {dd.lobby.lock} is set:
+		if player's world is "Lobby":
+			cancel event
+on build:
+	if {dd.lobby.lock} is set:
+		if player's world is "Lobby":
+			cancel event
+on block break:
+	if {dd.lobby.lock} is set:
+		if player's world is "Lobby":
+			cancel event
+on damage:
+	if {dd.lobby.lock} is set:
+		if victim's world is "Lobby":
+			cancel event
+	

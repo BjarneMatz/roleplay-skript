@@ -1,0 +1,68 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::bug} to true
+command /bugreport:
+	trigger:
+		send ""
+		send "§2Du möchtest einen Bug Melden?"
+		send "§2Gehe in unserem Forum in die Kategorie ""Bug Report"" oder klicke einfach <link:https://google.com>§7[§9Hier§7]"
+		send ""
+		
+command /bugid:
+	trigger:
+		send title "§3Sammle Daten..." to player for 3 seconds
+		play sound "block.note_block.pling"
+		play sound "block.note_block.pling"
+		set {bug.id} to random integer between 111111 and 999999
+		if {bug.index} is not set:
+			set {bug.index} to 1
+		else:
+			add 11 to {bug.index}
+		set {bug.rep::%{bug.index}%.%{bug.id}%::exits} to true
+		set {bug.rep::%{bug.index}%.%{bug.id}%::player} to player
+		set {bug.rep::%{bug.index}%.%{bug.id}%::uuid} to player's uuid
+		set {bug.rep::%{bug.index}%.%{bug.id}%::date} to now
+		set {bug.rep::%{bug.index}%.%{bug.id}%::lastlogin} to player's last login
+		set {bug.rep::%{bug.index}%.%{bug.id}%::firstlogin} to player's first login
+		set {bug.rep::%{bug.index}%.%{bug.id}%::language} to player's language
+		set {bug.rep::%{bug.index}%.%{bug.id}%::attacker} to player's last attacker
+		set {bug.rep::%{bug.index}%.%{bug.id}%::lastdamagecause} to player's last damage cause
+		set {bug.rep::%{bug.index}%.%{bug.id}%::level} to player's level
+		set {bug.rep::%{bug.index}%.%{bug.id}%::location} to player's location
+		set {bug.rep::%{bug.index}%.%{bug.id}%::health} to player's health
+		
+		wait 5 seconds
+		send title "§bDaten Gesammelt!" to player for 2 seconds
+		play sound "block.note_block.pling" with pitch 2
+		play sound "block.note_block.pling" with pitch 2
+		wait 1 second
+		send ""
+		send ""
+		send "§cDeine BUG§bID: §e%{bug.id}%"
+		send "§cDeine BUG§aIX: §e%{bug.index}%"
+		send ""
+		send "§7§oGib bitte §7§o§lbeide §7§oZahlen in deinem Bug Report an, ansonsten können wir den Report leider nicht bearbeiten."
+		send ""
+		
+command /devreport <number> <number>:
+	permission: core.dev.viewreport
+	usage: /devreport <BUGIX> <BUGID>
+	trigger:
+		if {bug.rep::%arg-1%.%arg-2%::exits} is set:
+			send ""
+			send "§7§oAlle Daten bei Report Log Erstellung"
+			send "Spieler: %{bug.rep::%{bug.index}%.%{bug.id}%::player}%"
+			send "UUID: %{bug.rep::%{bug.index}%.%{bug.id}%::uuid}%"
+			send "Datum: %{bug.rep::%{bug.index}%.%{bug.id}%::date}%"
+			send "Letzter Login: %{bug.rep::%{bug.index}%.%{bug.id}%::lastlogin}%"
+			send "Erster Login: %{bug.rep::%{bug.index}%.%{bug.id}%::firstlogin}%"
+			send "Spiel Sprache: %{bug.rep::%{bug.index}%.%{bug.id}%::language}%"
+			send "Letzer Angreifer: %{bug.rep::%{bug.index}%.%{bug.id}%::attacker}%"
+			send "Letzer Damage Grund: %{bug.rep::%{bug.index}%.%{bug.id}%::lastdamagecause}%"
+			send "Level: %{bug.rep::%{bug.index}%.%{bug.id}%::level}%"
+			send "Position: %{bug.rep::%{bug.index}%.%{bug.id}%::location}%"
+			send "Leben: %{bug.rep::%{bug.index}%.%{bug.id}%::health}%"
+		else:
+			send "Dieser Bug Report existiert nicht."
+		
+		

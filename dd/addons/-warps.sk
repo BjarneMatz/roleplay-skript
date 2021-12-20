@@ -1,0 +1,78 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::warps} to true
+
+command /warp:
+	aliases: warps
+	trigger:
+		set {_gui} to chest inventory with 3 rows named "§2Warp Menü"
+		open {_gui} to player
+		loop 45 times:
+			set slot loop-number - 1 of {_gui} to dark gray stained glass pane named "§3"
+		play sound "UI_BUTTON_CLICK" in master category at volume 1 with pitch 1 for player
+		
+		wait 10 tick
+		set slot 13 of {_gui} to ender eye named "§6Lobby"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		
+		
+		wait 5 tick
+		
+		set slot 3 of {_gui} to oak planks named "§dEvent-1"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		set slot 21 of {_gui} to netherrack named "§cNether"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		set slot 5 of {_gui} to spruce planks named "§dEvent-2"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		set slot 23 of {_gui} to end stone named "§eEnd"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		
+		
+		wait 5 tick
+		set slot 15 of {_gui} to iron pickaxe named "§aFarmwelt"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		set slot 11 of {_gui} to grass block named "§2Citybuild"
+		play sound "UI_BUTTON_CLICK" in master category at volume 0.1 with pitch 0 for player
+		
+		
+		
+		
+		
+		
+on inventory click:
+	if name of player's current inventory is "§2Warp Menü":
+		cancel event
+		if clicked slot is 3:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::event1}
+		if clicked slot is 5:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::event2}
+		if clicked slot is 11:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::citybuild}
+		if clicked slot is 13:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::lobby}
+		if clicked slot is 15:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::farmwelt}
+		if clicked slot is 21:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::nether}
+		if clicked slot is 23:
+			close player's inventory
+			wait 1 tick
+			teleport player to {dd.warp::end}
+			
+
+
+command /setwarp <string>:
+	trigger:
+		set {dd.warp::%arg-1%} to player's location

@@ -1,0 +1,29 @@
+options:
+	line: §3------------- §9DD §7| §bRainbowBlock §3-------------
+command /rainbowblock [<string>] [<string>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send ""
+			send "§a/logon §7<§eArgument§7>"
+			send ""
+			send "§b➥ §eadd §7- §3Befehl Hinzufügen"
+			send "§b➥ §elist §7- §3Befehle auflisten"
+			send "§b➥ §eremove §7- §3Befehl anhand des Indexes entfernen"
+			send ""
+			send "{@line}"
+		else if arg-1 is "add":
+			add location of targeted block to {dd.rainbowblock.blocks::*}
+		else if arg-1 is "list":
+			loop {dd.rainbowblock.blocks::*}:
+				send "%loop-index% - %loop-value%"
+		else if arg-1 is "remove":
+			loop {dd.rainbowblock.blocks::*}:
+				location of targeted block is loop-value
+				remove location of targeted block from {dd.rainbowblock.blocks::*}
+				
+every second:
+	loop {dd.rainbowblock.blocks::*}:
+		set {_b} to block at loop-value
+		send "%{_b}%"
+		set {_b} to any stained glass

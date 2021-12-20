@@ -1,0 +1,35 @@
+options:
+	line: §3------------- §9DD §7| §bLogOn §3-------------
+
+command /logon [<string>] [<string>]:
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send ""
+			send "§a/logon §7<§eArgument§7>"
+			send ""
+			send "§b➥ §eadd §7- §3Befehl Hinzufügen"
+			send "§b➥ §elist §7- §3Befehle auflisten"
+			send "§b➥ §eremove §7- §3Befehl anhand des Indexes entfernen"
+			send ""
+			send "{@line}"
+		else if arg-1 is "add":
+			if arg-2 is set:
+				add arg-2 to {dd.logon::%player%::*}
+			else:
+				send "Befehl angeben"
+		else if arg-1 is "remove":
+			if arg-2 is set:
+				loop {dd.logon::%player%::*}:
+					arg-2 is loop-index
+					remove loop-value from {dd.logon::%player%::*}
+			else:
+				send "Nummer angeben"
+		else if arg-1 is "list":
+			send "§3Folgende Commands hast du abgespeichert:"
+			loop {dd.logon::%player%::*}:
+				send "§b%loop-index% §9» §e%loop-value%"
+on join:
+	wait 5 ticks
+	loop {dd.logon::%player%::*}:
+		make player execute loop-value

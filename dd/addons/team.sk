@@ -1,0 +1,66 @@
+command /admin [<string>] [<string>]:
+	trigger:
+		if arg-1 is "restart":
+			if arg-2 is "confirm":
+				loop 10 times:
+					send "" to all players
+				send "§c✖✖✖     §6§lANNOUNCE     §c✖✖✖" to all players
+				send "" to all players
+				send "§3Der Server führt gleich einen Neustart durch." to all players
+				send "§3Alle Fortschritte werden gespeichert." to all players
+				send "§3Der Neustart dauert etwa 2 Minuten." to all players
+				send "" to all players 
+				send "§cNeustart in §eT-60 §cSekunden" to all players
+				send "" to all players
+				send "§c✖✖✖     §6§lANNOUNCE     §c✖✖✖" to all players
+				play sound "block.beacon.activate" in master category to all players
+				
+				wait 30 seconds
+				send "" to all players
+				send "§cNeustart in §eT-30 §cSekunden" to all players
+				send "" to all players
+				play sound "block.note_block.pling" in master category to all players
+				
+				wait 15 seconds
+				send "" to all players
+				send "§cNeustart in §eT-15 §cSekunden" to all players
+				send "" to all players
+				play sound "block.note_block.pling" in master category to all players
+				
+				wait 5 seconds
+				send "" to all players
+				send "§cNeustart in §eT-10 §cSekunden" to all players
+				send "" to all players
+				play sound "block.note_block.pling" in master category to all players
+			
+				wait 1 second
+				send "§cNeustart in §eT-9 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-8 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-7 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-6 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-5 §cSekunden" to all players
+				play sound "block.note_block.pling" in master category to all players
+				wait 1 second
+				send "§cNeustart in §eT-4 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-3 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-2 §cSekunden" to all players
+				wait 1 second
+				send "§cNeustart in §eT-1 §cSekunden" to all players
+				wait 1 second
+				send "§cDer Server startet jetzt neu." to all players
+				play sound "block.note_block.pling" in master category to all players
+				wait 1 second
+				kick all players due to "§c✖✖✖     §6Neustart     §c✖✖✖ %newline%%newline% §3Der Server startet nun neu. %newline% §3Normalerweise sollte ein Neustart nicht länger als 2 Minuten dauern. %newline% §3Schau doch in der Zwischenzeit mal auf unserem Discord vorbei: %newline%§ehttps://dsc.gg/united-mc.eu %newline%%newline% §c✖✖✖     §6Neustart     §c✖✖✖"
+				stop the server
+			
+			else:
+				send "confirm"
+		else:
+			send "Unbekanntes Argument"
+			

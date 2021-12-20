@@ -1,0 +1,13 @@
+on load:
+	set {dd.addons::*} to false
+	set {dd.addons::mainframe} to true
+	
+on unload:
+	set {dd.server.reset} to true
+	
+command /ddreload:
+	trigger:
+		set {dd.reloading} to true
+		send "§b➥ §3DD Reload §7- §3Minilag" to all players
+		make console execute "/skript reload dd/"
+		

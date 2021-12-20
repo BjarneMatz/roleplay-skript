@@ -1,0 +1,17 @@
+on command:
+	loop {dd.commandblocker::*}:
+		command is loop-value
+		cancel event
+		
+command /commandblocker [<string>] [<string>]:
+	permission: dd.commandblocker
+	trigger:
+		if arg-1 is "add":
+			add arg-2 to {dd.commandblocker::*}
+		if arg-1 is "list":
+			loop {dd.commandblocker::*}:
+				send "%loop-index% - %loop-value%"
+		if arg-1 is "remove":
+			loop {dd.commandblocker::*}:
+				loop-index is arg-2
+				remove loop-value from {dd.commandblocker::*}

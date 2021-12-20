@@ -1,0 +1,48 @@
+on load:
+	wait 20 ticks
+	set {dd.addons::gamemode} to true
+options:
+	line: -----------Gamemode-----------
+
+command /gm [<string>] [<player>]:
+	permission: dd.gamemode
+	trigger:
+		if arg-1 is not set:
+			send "§b➥ §a/gm §7<§30-3§7> §7[<§eSpieler§7>]"
+			exit
+		else:
+			if arg-2 is set:
+				if arg-2 is online:
+					if arg-1 is "0":
+						set arg-2's gamemode to survival
+						send "§6Du §3hast den Spielmodus von §6%arg-2% §3zu §9Survival §3gewechselt"
+						send "§6Dein §3Spielmodus wurde von §6%player% §3zu §9Survival §3gewechselt" to arg-2
+					if arg-1 is "1":
+						set arg-2's gamemode to creative
+						send "§6Du §3hast den Spielmodus von §6%arg-2% §3zu §9Creative §3gewechselt"
+						send "§6Dein §3Spielmodus wurde von §6%player% §3zu §9Creative §3gewechselt" to arg-2
+					if arg-1 is "2":
+						set arg-2's gamemode to adventure
+						send "§6Du §3hast den Spielmodus von §6%arg-2% §3zu §9Adventure §3gewechselt"
+						send "§6Dein §3Spielmodus wurde von §6%player% §3zu §9Adventure §3gewechselt" to arg-2
+					if arg-1 is "3":
+						set arg-2's gamemode to spectator
+						send "§6Du §3hast den Spielmodus von §6%arg-2% §3zu §9Spectator §3gewechselt"
+						send "§6Dein §3Spielmodus wurde von §6%player% §3zu §9Spectator §3gewechselt" to arg-2
+				else:
+					send "§b➥ §cSpieler nicht gefunden!"
+			else:
+				if arg-1 is "0":
+					set player's gamemode to survival
+					send "§6Du §3hast §6deinen §3Spielmodus zu §9Survival §3gewechselt"
+				if arg-1 is "1":
+					set player's gamemode to creative
+					send "§6Du §3hast §6deinen §3Spielmodus zu §9Creative §3gewechselt"
+				if arg-1 is "2":
+					set player's gamemode to adventure
+					send "§6Du §3hast §6deinen §3Spielmodus zu §9Adventure §3gewechselt"
+				if arg-1 is "3":
+					set player's gamemode to spectator
+					send "§6Du §3hast §6deinen §3Spielmodus zu §9Spectator §3gewechselt"
+					
+			
