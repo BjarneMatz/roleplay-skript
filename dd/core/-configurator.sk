@@ -1,3 +1,0 @@
-on load:
-	wait 20 ticks
-	set {dd.addons::configurator} to true
