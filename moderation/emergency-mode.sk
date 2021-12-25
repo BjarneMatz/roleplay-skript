@@ -31,7 +31,7 @@ on connect:
 	kick player due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de"
 on join:
 	{dd.em.mode} is true
-	kick player due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de""
+	kick player due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de"
 		
 		
 		
