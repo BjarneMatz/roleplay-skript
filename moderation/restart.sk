@@ -1,4 +1,5 @@
 command /ddrestart [<string>]:
+	permission: dd.restart
 	trigger:
 		if arg-1 is not set:
 			send "/ddrestart <>"
@@ -28,38 +29,20 @@ command /ddrestart [<string>]:
 			send "§cNeustart in §eT-15 §cSekunden" to all players
 			send "" to all players
 			play sound "block.note_block.pling" in master category to all players
-
+			
 			wait 5 seconds
-			send "" to all players
-			send "§cNeustart in §eT-10 §cSekunden" to all players
-			send "" to all players
-			play sound "block.note_block.pling" in master category to all players
-							wait 1 second
-			send "§cNeustart in §eT-9 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-8 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-7 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-6 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-5 §cSekunden" to all players
-			play sound "block.note_block.pling" in master category to all players
-			wait 1 second
-			send "§cNeustart in §eT-4 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-3 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-2 §cSekunden" to all players
-			wait 1 second
-			send "§cNeustart in §eT-1 §cSekunden" to all players
-			wait 1 second
+			loop 10 times:
+				set {_c} to 11 - loop-value
+				send "" to all players
+				send "§cNeustart in §eT-%{_c}% §cSekunden" to all players
+				play sound "block.note_block.pling" in master category to all players
+				send "" to all players
+				wait 1 second
 			send "§cDer Server startet jetzt neu." to all players
-			play sound "block.note_block.pling" in master category to all players
+			play sound "block.note_block.pling" in master category with pitch 0 to all players
 			wait 1 second
-			kick all players due to "§c✖✖✖     §6Neustart     §c✖✖✖ %newline%%newline% §3Der Server startet nun neu. %newline% §3Normalerweise sollte ein Neustart nicht länger als 2 Minuten dauern. %newline% §3Schau doch in der Zwischenzeit mal auf unserem Discord vorbei: %newline%§ehttps://dsc.gg/united-mc.eu %newline%%newline% §c✖✖✖     §6Neustart     §c✖✖✖"
+			kick all players due to "§c✖✖✖     §6Neustart     §c✖✖✖ %newline%%newline% §3Der Server startet nun neu. %newline% §3Normalerweise sollte ein Neustart nicht länger als 2 Minuten dauern. %newline% §3Schau doch in der Zwischenzeit mal auf unserem Discord vorbei: %newline%§ehttps://discord.avariziagames.de %newline%%newline% §c✖✖✖     §6Neustart     §c✖✖✖"
 			stop the server
 
 		else:
-			send "Unbekanntes Argument."
 			exit
