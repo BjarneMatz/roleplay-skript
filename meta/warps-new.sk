@@ -1,0 +1,52 @@
+command /warp [<string>]:
+	aliases: warps
+	permission: dd.warp
+	trigger:
+		if arg-1 is not set:
+			send "{@line}"
+			send ""
+			send "§3Unsere Warp Punkte:"
+			loop {dd.warps::*}:
+				send "§9➥ §3%loop-value%"
+			send ""
+			send "{@line}"
+			exit
+		else:
+			if {dd.warps::%arg-1%} is set:
+				teleport player to {dd.warps::%arg-1%}
+				send "{@prefix}§aDu wurdest erfolgreich teleportiert!"
+				exit
+			else:
+				send "{@prefix}§cDieser Warp-Punkt existiert nicht!"
+				exit
+				
+command /setwarp [<string>]:
+	permission: dd.setwarp
+	trigger:
+		if arg-1 is not set:
+			send "{@prefix}Gib einen Namen zum hinzufügen an."
+			exit
+		else:
+			if {dd.warps::%arg-1%} is set:
+				send "{@prefix}Dieser Warp-Punkt existiert bereits!"
+				exit
+			else:
+				set {dd.warps::%arg-1%} to player's location
+				send "{@prefix}Der Warp-Punkt %arg-1% wurde gesetzt."
+				send "{@prefix}Koordinaten von %arg-1%: §e%{dd.warps::%arg-1%}%"
+				log "%player% added warp %arg-1% position is %{dd.warps::%arg-1%}%" to "dd/admin/warps.log"
+				exit
+command /delwarp [<string>]:
+	permission: dd.delwarp
+	trigger:
+		if arg-1 is not set:
+			send "{@prefix}Gib einen Warp-Punkt zum löschen an."
+			exit
+		else:	
+			if {dd.warps::%arg-1%} is not set:
+				send "{@prefix}§cDieser Warp-Punkt existiert nicht"
+				exit
+			else:
+				log "%player% deleted warp %arg-1% previous position was %{dd.warps::%arg-1%}%" to "dd/admin/warps.log"
+				send "{@prefix}Der Warp-Punkt %arg-1% wurde gelöscht. §7(Position: %{dd.warps::%arg-1%}%)"
+				clear {dd.warps::%arg-1%}

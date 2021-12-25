@@ -1,5 +1,8 @@
+options:
+	prefix: §7[§bDD §8| §9Sleep§7] §8» §3
+
 on bed enter:
-	send "§7[§bDD §8| §9Sleep§7] §8» §6%event-player% §3hat sich ins Bett gelegt." to all players
+	send "{@prefix}§6%event-player% §3hat sich ins Bett gelegt." to all players
 on bed leave:
-	send "§7[§bDD §8| §9Sleep§7] §8» §6%event-player% §3hat sein Bett verlassen." to all players
+	send "{@prefix}§6%event-player% §3hat sein Bett verlassen." to all players
 	

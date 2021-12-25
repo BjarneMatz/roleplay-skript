@@ -18,17 +18,19 @@ command /logon [<string>] [<string>]:
 		else if arg-1 is "add":
 			if arg-2 is set:
 				add arg-2 to {dd.logon::%player%::*}
+				send "{@prefix}Der Befehl %arg-2% wurde zu deiner LogOn-Liste hinzugefügt."
 			else:
-				send "Befehl angeben"
+				send "{@prefix}Gib einen Befehl an!"
 		else if arg-1 is "remove":
 			if arg-2 is set:
 				loop {dd.logon::%player%::*}:
 					arg-2 is loop-index
 					remove loop-value from {dd.logon::%player%::*}
+					send "{@prefix}Der Befehl %loop-value% wurde von deiner LogOn-Liste entfernt."
 			else:
-				send "Nummer angeben"
+				send "{@prefix}Nummer angeben. Zum auflisten: §a/logon list"
 		else if arg-1 is "list":
-			send "§3Folgende Commands hast du abgespeichert:"
+			send "{@prefix}Folgende Commands hast du abgespeichert:"
 			loop {dd.logon::%player%::*}:
 				send "§b%loop-index% §9» §e%loop-value%"
 on join:

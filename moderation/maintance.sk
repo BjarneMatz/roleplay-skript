@@ -2,9 +2,11 @@ on load:
 	wait 20 ticks
 	set {dd.addons::maintance} to true
 options:
-	line: §9------------§3Maintance§9------------
+	prefix: §7[§bDD §8| §9Maintance§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9Maintance§7] §3-------------
 
 command /maintance [<string>]:
+	permission: dd.maintance
 	trigger:
 		if arg-1 is not set:
 			send "{@line}"
