@@ -1,0 +1,38 @@
+
+#kick players
+#lock server for all players
+#remain open for hardcoded players
+#
+#
+#
+
+
+
+command /emergency [<string>]:
+	permission: dd.emergency
+	permission message: Glaub mir, du möchtest nicht, dass wir diesen Befehl benutzen müssen
+	trigger:
+		player has permission "dd.emergency"
+		log "%player% HAS TRIGGERED EMERGENCY MODE" to "dd/log/emergency.log"
+		log "%arg-1% HAS BEEN ASSIGNED AS ARG-1"
+		clear {dd.em.playerlog::*}
+		
+		
+		
+		loop all players:
+			add event-player to {dd.em.playerlog::*}
+		set {dd.em.mode} to true
+		kick all players due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de"
+		
+		
+		
+on connect:
+	{dd.em.mode} is true
+	kick player due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de"
+on join:
+	{dd.em.mode} is true
+	kick player due to "§cDer Server hat in den Emergency-Mode gewechselt. Weitere Infos im Discord unter https://discord.avariziagames.de""
+		
+		
+		
+		
