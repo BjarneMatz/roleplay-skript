@@ -6,7 +6,7 @@ variables:
 command /serverinfo [<string>]:
 	trigger:
 		send ""
-		send "§3Version: §b1.17.1"
+		send "§3Version: §b1.18.1"
 		send "§3Betriebssystem: §bPaperSpigot"
 		send "§3Backbone: §bLinux Debian 10"
 		send ""

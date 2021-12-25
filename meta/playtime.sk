@@ -16,16 +16,16 @@ every second:
 		if {dd.pt::%loop-player%::hh} is 24:
 			subtract 24 from {dd.pt::%loop-player%::hh}
 			add 1 to {dd.pt::%loop-player%::dd}
-		set {dd.pt::%loop-player%::formated} to "§e%{dd.pt::%loop-player%::dd}% §9Tage §e%{dd.pt::%loop-player%::hh}% §9Stunden §e%{dd.pt::%loop-player%::mm}% §9Minuten §e%{dd.pt::%loop-player%::ss}% §9Sekunden"
+		set {dd.pt::%loop-player%::formated} to "§d%{dd.pt::%loop-player%::dd}% §5Tage §d%{dd.pt::%loop-player%::hh}% §5Stunden §d%{dd.pt::%loop-player%::mm}% §5Minuten §d%{dd.pt::%loop-player%::ss}% §5Sekunden"
 
 
 command /playtime [<player>]:
 	trigger:
 		if arg-1 is not set:
-			send "§3Deine Spielzeit beträgt:"
+			send "§5Deine Spielzeit beträgt:"
 			send "%{dd.pt::%player%::formated}%"
 			exit
 		else:
-			send "§3%arg-1%s Spielzeit beträgt:"
+			send "§5%arg-1%s Spielzeit beträgt:"
 			send "%{dd.pt::%arg-1%::formated}%"
 			exit

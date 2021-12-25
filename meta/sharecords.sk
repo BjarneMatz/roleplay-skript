@@ -5,18 +5,19 @@ command cords [<string>] [<string>]:
 		if arg-1 is not set:
 			send "{@line}"
 			send ""
-			send "§d/cords <Argument>"
+			send "§d/cords §7<§eArgument§7>"
 			send ""
-			send "§5» §dsave <Position> - speichert eine Position"
-			send "§5» §ddelete <Position> - löscht eine gespeicherte Position"
-			send "§5» §dlist - listet deine gespiecherten Positionen auf"
-			send "§5» §dshare <Position> - teilt eine gespeicherte Position"
-			send "§5» §dsharehere - teilt deine derzeitige Position"
+			send "§5» §esave §7<§dPosition7> §7- §dspeichert eine Position"
+			send "§5» §edelete §7<§dPosition§7> §7- §dlöscht eine gespeicherte Position"
+			send "§5» §elist §7- listet deine §dgespiecherten Positionen auf"
+			send "§5» §eshare §7<§dPosition§7> §7- §dteilt eine gespeicherte Position"
+			send "§5» §esharehere §7- §dteilt deine derzeitige Position"
 			send ""
 			send "{@line}"
 		if arg-1 is "save":
 			if arg-2 is not set:
 				send "§cGibt einen Postionsnamen an: §d/cords save <Position>"
+				exit
 			else:
 				if {dd::sc::%player's uuid%::%arg-2%} is not set:
 					set {dd::sc::%player's uuid%::%arg-2%} to player's location
@@ -25,8 +26,10 @@ command cords [<string>] [<string>]:
 					set {dd::sc::%player's uuid%::%arg-2%::z} to player's z coordinate
 					set {dd::sc::%player's uuid%::%arg-2%::world} to player's world
 					send "§d%arg-2% §5wurde auf §3X: §d%{dd::sc::%player's uuid%::%arg-2%::x}% §3Y: §d%{dd::sc::%player's uuid%::%arg-2%::y}% §3Z: §d%{dd::sc::%player's uuid%::%arg-2%::z}% §5und die Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}% §5gespeichert."
+					exit
 				else:
 					send "§cEine Position mit dem Namen §d%arg-2% §cexistiert bereits."
+					exit
 		if arg-1 is "view":
 			if arg-2 is set:
 				if {dd::sc::%player's uuid%::%arg-2%} is set:
@@ -41,12 +44,13 @@ command cords [<string>] [<string>]:
 					send "§5Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}%"
 					send ""
 					send "{@line}"
-
+					exit
 				else:
 					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+					exit
 			else:
 				send "§cGibt einen Postionsnamen an: §d/cords view <Position>"
-
+				exit
 		if arg-1 is "delete":
 			if arg-2 is set:
 				if {dd::sc::%player's uuid%::%arg-2%} is set:
@@ -56,14 +60,18 @@ command cords [<string>] [<string>]:
 					clear {dd::sc::%player's uuid%::%arg-2%::y}
 					clear {dd::sc::%player's uuid%::%arg-2%::z}
 					clear {dd::sc::%player's uuid%::%arg-2%::world}
+					exit
 				else:
 					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+					exit
 			else:
 				send "§cGibt einen Postionsnamen an: §d/cords delete <Position>"
+				exit
 		if arg-1 is "list":
 			send "§3Deine gespeicherten Positionen:"
 			loop {dd::sc::%player's uuid%::*}:
 				send "§6%loop-index% §7» §5X: §d%{dd::sc::%player's uuid%::%loop-index%::x}% §5Y: §d%{dd::sc::%player's uuid%::%loop-index%::y}% §5Z: §d%{dd::sc::%player's uuid%::%loop-index%::z}% §5Welt: §d%{dd::sc::%player's uuid%::%loop-index%::world}%" to player
+			exit
 		if arg-1 is "share":
 			if arg-2 is set:
 				if {dd::sc::%player's uuid%::%arg-2%} is set:
@@ -78,8 +86,13 @@ command cords [<string>] [<string>]:
 					send "§5Welt: §d%{dd::sc::%player's uuid%::%arg-2%::world}%" to all players
 					send "" to all players
 					send "{@line}" to all players
+					exit
 				else:
 					send "§cEine Position mit dem Namen §d%arg-2% §cgibt es nicht."
+					exit
+			else:
+				send "Gibt eine Position an, die du teilen möchtest!"
+				exit
 		if arg-1 is "sharehere":
 			send "{@line}" to all players
 			send "" to all players
@@ -92,3 +105,7 @@ command cords [<string>] [<string>]:
 			send "§5Welt: §d%player's world%" to all players
 			send "" to all players
 			send "{@line}" to all players
+			exit
+		else:
+			send "Diese Funktion gibt es nicht."
+			make player execute "/cords"

@@ -20,7 +20,7 @@ command /setspawn [<string>]:
 		else:
 			if arg-1 is "set":
 				set {dd.spawn.pos} to player's position
-				send "Position gesetzt."
+				send "Position gesetzt:"
 				send "%{dd.spawn.pos}%"
 				exit
 			if arg-1 is "get":
@@ -37,9 +37,6 @@ command /spawn [<string>]:
 			send "§aErfolgreich zum Spawn teleportiert."
 		else:
 			send "Der Spawn wurde noch nicht gesetzt. Melde dich bitte bei einem Teammitglied, dass sollte nicht so sein."
-			
-on respawn:
-	teleport player to {dd.spawn.pos}
-					
+								
 on first join:
-	teleport player to {dd.spawn.pos}
+	teleport event-player to {dd.spawn.pos}

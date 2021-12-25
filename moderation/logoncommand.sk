@@ -31,6 +31,7 @@ command /logon [<string>] [<string>]:
 			loop {dd.logon::%player%::*}:
 				send "§b%loop-index% §9» §e%loop-value%"
 on join:
+	player has permission dd.logon
 	wait 5 ticks
 	loop {dd.logon::%player%::*}:
 		make player execute loop-value
