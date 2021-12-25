@@ -7,14 +7,14 @@ options:
 
 on command:
 	loop all players:
-		loop-player has permission "dd.mod.cspy"
+		loop-player has permission "dd.cspy"
 		{dd.cspy.data::%loop-player%::enabled} is true
 		if {dd.cspy.data::%loop-player%::passive} is true:
 			send "§8[§7DD §8| §7CSPY§8] §8(§7%player%§8) §8» §7%full command%" to loop-player
 		else:
 			send "§7[§bDD §8| §9CSPY§7] §7(§6%player%§7) §8» §e%full command%" to loop-player
 command /cspy [<string>]:
-	permission: dd.mod.cspy
+	permission: dd.cspy
 	usage: §a/cspy
 	trigger:
 		if arg-1 is not set:
