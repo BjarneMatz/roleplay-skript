@@ -1,5 +1,6 @@
 options:
-	line: §9--- §3Position §9---
+	prefix: §7[§bDD §8| §9Cords§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9Cords§7] §3-------------
 command cords [<string>] [<string>]:
 	trigger:
 		if arg-1 is not set:

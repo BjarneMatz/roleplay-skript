@@ -1,9 +1,7 @@
-on load:
-	wait 20 ticks
-	set {dd.addons::spawn} to true
 options:
 	noperm: Keine Permission.
-	line: ----------Spawn----------
+	prefix: §7[§bDD §8| §9Spawn§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9Spawn§7] §3-------------
 command /setspawn [<string>]:
 	permission: dd.setspawn
 	permission message: {@noperm}
@@ -25,18 +23,18 @@ command /setspawn [<string>]:
 				exit
 			if arg-1 is "get":
 				if {dd.spawn.pos} is set:
-					send "Der Spawn befindet sich hier:"
-					send "%{dd.spawn.pos}%"
+					send "{@prefix}Der Spawn befindet sich hier:"
+					send "{@prefix}%{dd.spawn.pos}%"
 				else:
-					send "Spawn noch nicht gesetzt."
+					send "{@prefix}Spawn noch nicht gesetzt."
 					exit
 command /spawn [<string>]:
 	trigger:
 		if {dd.spawn.pos} is set:
 			teleport player to {dd.spawn.pos}
-			send "§aErfolgreich zum Spawn teleportiert."
+			send "{@prefix}Erfolgreich zum Spawn teleportiert."
 		else:
-			send "Der Spawn wurde noch nicht gesetzt. Melde dich bitte bei einem Teammitglied, dass sollte nicht so sein."
+			send "{@prefix}Der Spawn wurde noch nicht gesetzt. Melde dich bitte bei einem Teammitglied, dass sollte nicht so sein."
 								
 on first join:
 	teleport event-player to {dd.spawn.pos}

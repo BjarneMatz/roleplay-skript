@@ -1,5 +1,6 @@
 options:
-	line: §3------------- §9DD §7| §bLogOn §3-------------
+	prefix: §7[§bDD §8| §9LogOn§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9LogOn§7] §3-------------
 
 command /logon [<string>] [<string>]:
 	permission: dd.logon

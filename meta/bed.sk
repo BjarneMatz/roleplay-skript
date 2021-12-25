@@ -1,5 +1,5 @@
 on bed enter:
-	send "§6%event-player% §5hat sich ins Bett gelegt." to all players
+	send "§7[§bDD §8| §9Sleep§7] §8» §6%event-player% §3hat sich ins Bett gelegt." to all players
 on bed leave:
-	send "§6%event-player% §5hat sein Bett verlassen." to all players
+	send "§7[§bDD §8| §9Sleep§7] §8» §6%event-player% §3hat sein Bett verlassen." to all players
 	
