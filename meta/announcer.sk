@@ -1,0 +1,20 @@
+command /announcer [<string>] [<string>]:
+	permission dd.announcer
+	trigger:
+		if arg-1 is not set:
+			send "help menu"
+		if arg-1 is "add":
+			if arg-2 is set:
+				add arg-2 tp {dd.announcer::*}
+				send "{@prefix}Zur Announcer Liste wird folgender Text hinzugefügt:"
+				send "§e%arg-2%"
+			else:
+				send "{@prefix}Gib einen Text für die Announce ein."
+				exit
+		if arg-1 is "list":
+			loop {dd.announcer::*}:
+				send "%llop."
+		if arg-1 is "remove":
+			
+		else:
+			send "{@prefix}Unbekanntes Argument"
