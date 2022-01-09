@@ -1,20 +1,43 @@
+options:
+	prefix: §7[§bDD §8| §9Announcer§7] §8» §3
+	line: §3------------- §7[§bDD §8| §9Announcer§7] §3-------------
+
+
 command /announcer [<string>] [<string>]:
 	permission dd.announcer
 	trigger:
 		if arg-1 is not set:
-			send "help menu"
+			send "{@line}"
+			send "/announcer <Argument>"
+			send ""
+			send "add"
+			send "list"
+			send "remove"
+			send ""
+			send "{@line}"
+			exit
 		if arg-1 is "add":
 			if arg-2 is set:
 				add arg-2 tp {dd.announcer::*}
 				send "{@prefix}Zur Announcer Liste wird folgender Text hinzugefügt:"
 				send "§e%arg-2%"
+				exit
 			else:
 				send "{@prefix}Gib einen Text für die Announce ein."
 				exit
 		if arg-1 is "list":
+			send "{@line}"
 			loop {dd.announcer::*}:
-				send "%llop."
+				send "§e%loop-index% §7- §3%loop-value%"
+			send "{@line}"
+			exit
 		if arg-1 is "remove":
+			if arg-2 is set:
+				remove index arg-2 from {dd.announcer::*}
+				exit
+			else:
+				send "{@prefix}Gib die ID eines Textes ein."
+				send "{@prefix}Auflistung mit /announcer list"
 			
 		else:
 			send "{@prefix}Unbekanntes Argument"

@@ -15,6 +15,7 @@ command cords [<string>] [<string>]:
 			send "§5» §esharehere §7- §dteilt deine derzeitige Position"
 			send ""
 			send "{@line}"
+			exit
 		if arg-1 is "save":
 			if arg-2 is not set:
 				send "§cGibt einen Postionsnamen an: §d/cords save <Position>"
@@ -109,4 +110,3 @@ command cords [<string>] [<string>]:
 			exit
 		else:
 			send "Diese Funktion gibt es nicht."
-			make player execute "/cords"

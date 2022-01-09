@@ -1,3 +1,4 @@
 Permission List:
 
-dd.maintance - /maintance Befehl bzw. Maintance Modus aktivieren und deaktivieren
+dd.maintance - /maintance Befehl
+dd
