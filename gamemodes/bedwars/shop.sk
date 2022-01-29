@@ -1,0 +1,12 @@
+on init:
+	set {dd::bw::sgui} to a chest inventory with 6 rows
+on rightclick on a villager:
+	if name of villager is "Shop":
+		send "Test" to event-player
+		open {dd::bw::sgui} to event-player
+		
+every 20 ticks:
+	loop {dd::bw::data::teams::*}:
+		loop {
+	send action bar "Spieler Punkte: %{dd::bw::data::player::%player%::points% | Team Punkte: %{dd::bw::data::player::%loop-value%::points%" to all players
+		

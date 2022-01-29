@@ -1,0 +1,4 @@
+command /rename <string>:
+	permission: dd.rename
+	trigger:
+		set name of player's held item to arg-1
